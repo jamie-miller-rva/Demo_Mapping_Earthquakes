@@ -15,7 +15,7 @@ const API_KEY = MapboxApiKey;
 let map = L.map('mapid').setView([43.7, -79.3], 11);
 
 // Accessing the Toronto neighborhoods GeoJSON URL.
-let torontoHoods = "https://raw.githubusercontent.com/<GitHub_name>/Mapping_Earthquakes/main/torontoNeighborhoods.json";
+let torontoHoods = "https://raw.githubusercontent.com/jamie-miller-rva/Demo_Mapping_Earthquakes/Mapping_GeoJSON_Polygons/Mapping_GeoJSON_Polygons/static/data/torontoNeighborhoods.json";
 
 // Accessing the airport GeoJSON URL
 // let airportData = "https://raw.githubusercontent.com/jamie-miller-rva/Demo_Mapping_Earthquakes/main/Mapping_GeoJSON_Points/static/data/majorAirports.json";
@@ -23,11 +23,25 @@ let torontoHoods = "https://raw.githubusercontent.com/<GitHub_name>/Mapping_Eart
 // Accessing the Toronto airline routes GeoJSON URL.
 // let torontoData = "https://raw.githubusercontent.com/jamie-miller-rva/Demo_Mapping_Earthquakes/Mapping_GeoJSON_Linestrings/Mapping_GeoJSON_Linestrings/static/data/torontoRoutes.json";
 
-// // Create a style for the lines.
-// let myStyle = {
-//   color: "#ffffa1",
-//   weight: 2
-// }
+// Create a style for the lines. 
+// see https://leafletjs.com/reference-1.6.0.html#path-color
+let myStyle = {
+  color: "blue",
+  fillColor: "yellow",
+  fillOpacity: 0.7,
+  weight: 1
+};
+
+// Grabbing the GeoJSON data for torontoHoods
+d3.json(torontoHoods).then(function(data) {
+  console.log(data);
+  L.geoJSON(data, {
+    style: myStyle,
+    onEachFeature: function(feature, layer) {
+          layer.bindPopup("<h3> Neighborhood: " + feature.properties.AREA_NAME + "</h3>");
+        }}
+  ).addTo(map);
+});
 
 // // Grabbing our GeoJSON data.
 // d3.json(torontoData).then(function(data) {
