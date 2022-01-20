@@ -48,7 +48,7 @@ let sanFranAirport =
 };
 
 // add to map using GeoJSON layer
-L.geoJSON(sanFranAirport).addTo(map);
+// L.geoJSON(sanFranAirport).addTo(map);
 
 // To display data on a map with a popup marker, we have to bind the marker with the GeoJSON layer, 
 // L.geoJSON(), using a callback function.
@@ -69,7 +69,7 @@ L.geoJSON(sanFranAirport).addTo(map);
   
 // }).addTo(map);
 
-// alternative method
+// Grabbing our GeoJSON data.
 L.geoJSON(sanFranAirport, {
   onEachFeature: function(feature, layer) {
     console.log(layer);
