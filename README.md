@@ -17,3 +17,4 @@ The purpose of this project is to visually show the differences between the magn
 * Create interactivity for the earthquake data.
 
 ### Add comments on branching
+making some comments on branching
